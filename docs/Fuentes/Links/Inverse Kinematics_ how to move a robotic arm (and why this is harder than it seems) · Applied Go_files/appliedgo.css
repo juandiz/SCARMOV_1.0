@@ -1,0 +1,701 @@
+/*
+ * Fonts
+ */
+
+html {
+    font-family: 'Lato', 'Helvetica', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.45;
+}
+
+body {
+    width: 100%;
+    margin: 0em;
+    padding: 0em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Averia Libre', 'Lato', 'Helvetica', sans-serif;
+    text-decoration: none;
+    line-height: 1em;
+    text-align: left;
+    margin-top: 1em;
+    margin-right: 0em;
+    margin-bottom: 1em;
+    margin-left: 0em;
+}
+
+
+/* Font sizes follow the 1.2 (or "minor third") scale.
+ * See e.g.: http://type-scale.com/
+ */
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 1.414em 0 0.5em;
+    font-weight: inherit;
+    line-height: 1.2;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 2.074em;
+}
+
+h2 {
+    font-size: 1.728em;
+}
+
+h3 {
+    font-size: 1.44em;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+small,
+.font_small {
+    font-size: 0.833em;
+}
+
+
+/*
+ * Defaults
+ */
+
+
+/*
+ * Colours and style
+ */
+
+body.appliedgo-light {
+    color: #404040;
+    background-color: #f8f8f8;
+}
+
+.appliedgo-light .h1 {
+    color: #f4bf75;
+}
+
+.appliedgo-light #site-header,
+.appliedgo-light .site-nav-item a {
+    color: white;
+    background-color: #f4bf75;
+}
+
+.appliedgo-light .site-nav-item a:hover {
+    background-color: white;
+    color: #f4bf75;
+}
+
+.appliedgo-light #site-title h1 a {
+    color: white;
+    text-shadow: 0.05em 0.05em 0.1em #cbb89e;
+    /*#a07050;*/
+}
+
+.appliedgo-light .site-nav-item a {
+    color: white;
+}
+
+.appliedgo-light .site-nav-external {
+    color: #F2A14B;
+	background-color: white;
+	border-radius: 1em;
+}
+
+
+.appliedgo-light .subscribe-item a {
+    color: white;
+}
+
+.appliedgo-light #site-footer,
+.appliedgo-light #site-footer a {
+    background-color: #4b5a68;
+    color: white;
+}
+
+.appliedgo-light .article-read-more a {
+    background: #e5e8e9;
+    color: #999;
+}
+
+.appliedgo-light .article-read-more a:hover {
+    background-color: #f4bf75;
+    color: white;
+}
+
+
+/*Links */
+
+a {
+    text-decoration: none;
+    color: #f4bf75;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #f4bf75;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #f4bf75;
+}
+
+
+/* Footers */
+
+#joinMailingList {
+    border: 1pt solid #404040;
+    background-color: #FFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#joinMailingList i {
+    float: left;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+#joinMailingList .joinMailingListText {
+    padding: 0 0.5em 0 0.5em;
+}
+
+#discussOnReddit {
+    font-style: italic;
+}
+
+
+/* Share Buttons */
+
+.agshare_top {
+    display: block;
+}
+
+.agshare_bottom {
+    padding: 1em .2em .2em .2em;
+    display: block;
+    text-align: center;
+}
+
+.agshare_buttons {
+    display: inline-block;
+}
+
+.agshare_text {
+    display: inline-block;
+}
+
+.agshare_button {
+    display: inline-block;
+    padding: .2em .2em .2em .2em;
+}
+
+
+/*
+ * Layout
+ */
+
+
+/* Adaptive, device-first layout */
+
+
+/* Viewport: mobile device, or "too small" */
+
+@media screen,
+print {
+    main,
+    .main {
+        max-width: 100%;
+        padding: .5em;
+        min-height: 100px;
+    }
+    .table {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+    .row {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        padding: 0em;
+    }
+    .cell {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        padding: .5em;
+    }
+	#site-logo {
+		position:absolute;
+	}
+    #site-logo,
+    #site-title {
+        display: block;
+    }
+	#site-title h1{
+		text-align: center;
+	}
+	#site-head {
+		text-align: center;
+	}
+	#site-header {
+		padding: 0.5em;
+	}
+	#site-header .right {
+		text-align: center;
+	}
+    #site-footer {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0.5em;
+        margin-top: 0.5em;
+    }
+
+    #site-footer .cell {
+        display: block;
+        text-align: center;
+		vertical-align: middle;
+    }
+	.iconprefix {
+		text-align: center;
+		margin-bottom: 0.5em;
+	}
+    #site-url {
+        display: none;
+    }
+    .archive-category-wrap {
+        margin-bottom: 1em;
+    }
+    .archives {
+        margin-left: 0.5em;
+    }
+    .archive-article {
+        margin-bottom: 1em;
+    }
+    .archive-article h1 {
+        margin-bottom: 0.2em;
+    }
+    .archive-article-thumbnail,
+    .thumbnail-image {
+        width: 4em;
+        height: 3em;
+    }
+    .page {
+        margin-left: auto;
+        margin-right: auto;
+	}
+	#page-nav {
+		text-align: center;
+	}
+	#page-nav-separator {
+		color:#808080;
+	}
+    .page article,
+    #joinMailingList,
+    #discussOnReddit {
+        max-width: 33em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .imageLeft {
+        float: left;
+        width: 5em;
+        max-width: 5em;
+        margin: 0.5em;
+    }
+    .article-list p:empty,
+    .article-list br:empty {
+        display: none;
+    }
+    .footnotes {
+        max-width: 33em;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .footnotes ol li {
+        font-size: 0.9em;
+    }
+}
+
+
+/* Viewport: just about right */
+
+@media screen and (min-width: 45em),
+print {
+    main,
+    .main {
+        padding: 1em;
+    }
+    .table {
+        display: table;
+    }
+    .row {
+        display: table-row;
+        width: auto;
+    }
+    .cell {
+        display: table-cell;
+        padding: 0.5em;
+        vertical-align: middle;
+        width: auto;
+    }
+	#site-header .left {
+		width: 20%;
+	}
+	#site-header .center {
+		width: 60%;
+	}
+	#site-header .right {
+		width: 20%;
+	}
+	#site-logo {
+		position: relative;
+	}
+    #site-logo,
+    #site-title {
+        display: inline-block;
+    }
+	#site-head {
+		text-align: left;
+	}
+    .archives {
+        margin-left: 1em;
+    }
+    #site-footer {
+        display: table;
+    }
+	#site-footer .cell {
+		display: table-cell;
+	}
+    #site-footer .left {
+        text-align: left;
+    }
+    #site-footer .center {
+        text-align: center;
+    }
+    #site-footer .right {
+        float: right;
+        text-align: right;
+    }
+}
+
+
+/* Viewport: too big */
+
+@media screen and (min-width: 60em) {
+    .doc {
+        max-width: 60em;
+    }
+    .table {
+        display: table;
+        width: 100%;
+        max-width: 100%;
+    }
+    .row {
+        display: table-row;
+    }
+    .cell {
+        display: table-cell;
+    }
+}
+
+
+/* Liquid boxes */
+
+.liquid-box {
+	padding: 0.1em;
+}
+
+.liquid-cell {
+	margin: 0.1em;
+    display: inline-table;
+}
+
+
+/*
+ * Other layout
+ */
+
+
+/* Header */
+
+#site-head {
+    padding: 0.5em;
+}
+
+#site-logo {
+    margin: 0 auto 0.5rem auto;
+    width: 4rem;
+    height: 4rem;
+}
+
+#site-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+#site-title {
+    display: inline-block;
+    min-width: 12em;
+}
+
+#site-title h1 {
+    margin-bottom: 0em;
+}
+
+#site-title #tagline {
+    margin-top: 0.5em;
+}
+
+#site-nav {
+    padding: 0.5em;
+    margin: auto;
+	text-align:center;
+}
+
+.site-nav-item a {
+    padding: 0.2em;
+}
+
+#subscribe {
+    margin: 0 auto 0 auto;
+    width: auto;
+}
+
+.subscribe-item {
+    display: inline-block;
+}
+
+
+/* Content */
+
+.article-header,
+.article-footer {
+    max-width: 33em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-title {
+    padding-top: 1em;
+}
+
+.article-list {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 20em;
+    max-width: 30em;
+}
+
+.article-date {
+    display: inline;
+}
+
+.post .gotohugo .summary {
+    font-weight: bold;
+}
+
+.nohype {
+    display: block;
+    width: auto;
+    text-align: center;
+    background-color: #4b5a68;
+    color: white;
+    padding: 1em;
+}
+
+img {
+    max-width: 100%;
+}
+
+blockquote {
+    font-style: italic;
+    background: #f0f0f0;
+    padding: 0.5em;
+}
+
+blockquote p {
+    display: inline;
+}
+
+blockquote:after {
+    content: '\201D';
+    color: #aaa;
+    font-size: 3em;
+    line-height: 0.1em;
+    margin-right: 0.1em;
+    vertical-align: -0.4em;
+}
+
+blockquote:before {
+    content: '\201C';
+    color: #aaa;
+    font-size: 3em;
+    line-height: 0.1em;
+    margin-right: 0.1em;
+    vertical-align: -0.4em;
+}
+
+
+/* List */
+
+.article-read-more a {
+    display: inline-block;
+    line-height: 1em;
+    padding: .3em .8em;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+
+
+/* Article Navigation */
+
+#article-nav {
+    position: relative;
+}
+
+#article-nav:before,
+#article-nav:after {
+    content: "";
+    display: table;
+}
+
+#article-nav:after {
+    clear: both;
+}
+
+@media screen and (min-width: 1200px) {
+    #article-nav {
+        margin: 40px 0;
+    }
+    #article-nav:before {
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -4px;
+        margin-left: -4px;
+        content: "";
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        background: #787c81;
+    }
+}
+
+.article-nav-link-wrap {
+    text-decoration: none;
+    color: #999;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 40px;
+    text-align: center;
+    display: block;
+}
+
+.article-nav-link-wrap:hover {
+    color: #565a5f;
+}
+
+@media screen and (min-width: 1200px) {
+    .article-nav-link-wrap {
+        width: 50%;
+        margin-top: 0;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #article-nav-newer {
+        float: left;
+        text-align: right;
+        padding-right: 20px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #article-nav-older {
+        float: right;
+        text-align: left;
+        padding-left: 20px;
+    }
+}
+
+.article-nav-caption {
+    letter-spacing: 2px;
+    line-height: 1em;
+    font-weight: bold;
+    color: #565a5f;
+    text-transform: uppercase;
+}
+
+#article-nav-newer .article-nav-caption {
+    margin-right: -2px;
+}
+
+.article-nav-title {
+    font-size: 0.85em;
+    line-height: 1.6em;
+    margin-top: 0.5em;
+}
+
+
+/* currently disabled - fetch more style rules from hugo-icarus-theme > style.css if enabling the comment link */
+
+.article-comment-link {
+    display: none;
+}
+
+
+/* currently disabled - fetch more style rules from hugo-icarus-theme > style.css if enabling the share popup box */
+
+.article-share-link {
+    display: none;
+}
+
+
+/*
+ * Print style
+ */
+
+@media print {
+    body {
+        background-color: white;
+    }
+    .gotohugo .code {
+        background-color: white;
+    }
+    #site-nav,
+    #subscribe {
+        display: none;
+    }
+    #site-url {
+        display: table-cell;
+        float: right;
+    }
+    #site-footer {
+        background-color: white;
+        color: #404040;
+    }
+    #site-footer .left::after {
+        content: " (CC BY-NC-SA)";
+    }
+    #site-footer .center,
+    #site-footer .right {
+        display: none;
+    }
+    #article-nav {
+        display: none;
+    }
+}

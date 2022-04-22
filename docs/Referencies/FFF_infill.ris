@@ -1,0 +1,21 @@
+TY  - JOUR
+T1  - Effect of infill patterns on the mechanical performance of lightweight 3D-printed cellular PLA parts
+AU  - Lubombo, Christian
+AU  - Huneault, Michel A.
+JO  - Materials Today Communications
+VL  - 17
+SP  - 214
+EP  - 228
+PY  - 2018
+DA  - 2018/12/01/
+SN  - 2352-4928
+DO  - https://doi.org/10.1016/j.mtcomm.2018.09.017
+UR  - https://www.sciencedirect.com/science/article/pii/S2352492818301600
+KW  - Cellular
+KW  - 3D printing
+KW  - Fused filament fabrication
+KW  - Infill
+KW  - Mechanical performance
+KW  - Stretching and bending-dominated structures
+AB  - The use of cellular structures is an approach commonly employed to design lightweight high-performance components for diverse applications. 3D printing via the Fused Filament Fabrication (FFF) provides a higher geometric flexibility than conventional methods to generate thermoplastic cellular structures. Previous studies have mainly focused on the characterization and optimization of FFF process parameters for fully dense polylactide (PLA) parts. This study investigated the stiffness and strength of lightweight cellular PLA parts under uniaxial tensile loading and flexural loading both edgewise and flatwise. The cellular parts were fabricated with one and three perimeter shells by using five types of infill patterns at three different infill density levels. The stiffness and strength scaled with the part density. At the same density however, the mechanical response varied widely depending on the infill patterns and number of perimeter shells. The results showed that the stiffness was increased by up to a factor of 2 and the strength was increased by up to 82% at the same density simply by using a different type of infill pattern for the same number of perimeter shells. Likewise, the use of a higher number of perimeter shells for the same infill pattern improved the stiffness and the strength by up to a factor of 2 and up to 84%, respectively, at the same density. The scaling factors and rupture modes were examined and guidelines for part design were drawn.
+ER  - 

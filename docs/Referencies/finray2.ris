@@ -1,0 +1,22 @@
+TY  - EJOU
+AU  - Yang, Yang
+AU  - Jin, Kaixiang
+AU  - Zhu, Honghui
+AU  - Song, Gongfei
+AU  - Lu, Haojian
+AU  - Kang, Long
+TI  - A 3D-Printed Fin Ray Effect Inspired Soft Robotic Gripper with Force Feedback
+T2  - Micromachines
+
+PY  - 2021
+VL  - 12
+IS  - 10
+SN  - 2072-666X
+
+AB  - Soft robotic grippers are able to carry out many tasks that traditional rigid-bodied grippers cannot perform but often have many limitations in terms of control and feedback. In this study, a Fin Ray effect inspired soft robotic gripper is proposed with its whole body directly 3D printed using soft material without the need of assembly. As a result, the soft gripper has a light weight, simple structure, is enabled with high compliance and conformability, and is able to grasp objects with arbitrary geometry. A force sensor is embedded in the inner side of the gripper, which allows the contact force required to grip the object to be measured in order to guarantee successful grasping and to provide the most suitable gripping force. In addition, it enables control and data monitoring of the gripper’s operating state at all times. Characterization and grasping demonstration of the gripper are given in the Experiment section. Results show that the gripper can be used in a wide range of scenarios and applications, such as the service robot and food industry.
+KW  - soft robotic gripper
+KW  - force feedback
+KW  - 3D printing
+KW  - compliant structure
+KW  - Fin Ray effect
+DO  - 10.3390/mi12101141

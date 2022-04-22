@@ -1,0 +1,20 @@
+TY  - EJOU
+AU  - Terrile, Silvia
+AU  - Argüelles, Miguel
+AU  - Barrientos, Antonio
+TI  - Comparison of Different Technologies for Soft Robotics Grippers
+T2  - Sensors
+
+PY  - 2021
+VL  - 21
+IS  - 9
+SN  - 1424-8220
+
+AB  - Soft grippers have experienced a growing interest due to their considerable flexibility that allows them to grasp a variety of objects, in contrast to hard grippers, which are designed for a specific item. One of their most remarkable characteristics is the ability to manipulate soft objects without damaging them. This, together with their wide range of applications and the use of novels materials and technologies, renders them a very robust device. In this paper, we present a comparison of different technologies for soft robotics grippers. We fabricated and tested four grippers. Two use pneumatic actuation (the gripper with chambered fingers and the jamming gripper), while the other two employ electromechanical actuation (the tendon driver gripper and the gripper with passive structure). For the experiments, a group of twelve objects with different mechanical and geometrical properties have been selected. Furthermore, we analyzed the effect of the environmental conditions on the grippers, by testing each object in three different environments: normal, humid, and dusty. The aim of this comparative study is to show the different performances of different grippers tested under the same conditions. Our findings indicate that we can highlight that the mechanical gripper with a passive structure shows greater robustness.
+KW  - grasping and manipulation of soft objects
+KW  - soft robotics
+KW  - soft gripper
+KW  - pneumatic gripper
+KW  - jamming gripper
+KW  - passive gripper
+DO  - 10.3390/s21093253

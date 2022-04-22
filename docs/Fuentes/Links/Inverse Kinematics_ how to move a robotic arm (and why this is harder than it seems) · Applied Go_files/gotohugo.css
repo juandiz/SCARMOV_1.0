@@ -1,0 +1,186 @@
+/* gotohugo CSS 
+
+ Most measurements are given in em. See [The Goldilocks Approach](http://goldilocksapproach.com/demo/)
+ for the rationale behind this.
+ 
+ */
+
+
+tt, code, pre, kbd, samp {
+    font-family: "Roboto Mono", monospace;
+	font-size: .95rem;
+	line-height: 1.45;
+}
+
+
+.gotohugo p {
+    margin-top: 0.8em;
+    margin-right: 0em;
+    margin-bottom: 0.8em;
+    margin-left: 0em;
+}
+
+.gotohugo p:empty { /* Hide auto-generated empty elements... */
+	display: none;
+}
+.gotohugo .HYPE_element_container p:empty, .gotohugo .HYPE_element_container br:empty { /* ...but not those within a HYPE container. */
+	display: inline;
+}
+
+.gotohugo .doc h1,
+.gotohugo .doc h2,
+.gotohugo .doc h3,
+.gotohugo .doc h4,
+.gotohugo .doc h5 {
+    margin-top: 1.6em;
+}
+
+.gotohugo .doc {
+    vertical-align: top;
+	font-size: 1rem;
+    min-width: 20em;
+    max-width: 33em;
+	width:auto;
+    padding-top: 0em;
+    padding-left: 0em;
+    overflow-x: visible;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	/*margin-bottom: 1.6em;*/
+}
+
+.gotohugo .summary {
+	margin: 0em auto 0em auto;
+	padding: 0em 0em 0em 0em;
+}
+
+.gotohugo .source {
+	display: table;
+	padding-left: 1em;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+
+.gotohugo .ccpair {
+	display: table-row;
+	background-color: #f0f0f0
+}
+
+.gotohugo .comment,
+.gotohugo .code {
+	display: table-cell;
+	min-width: 20em;
+	padding-bottom: 0.8em;
+}
+
+.gotohugo .comment {
+	padding-right: 1em;
+	max-width: 33em;
+}
+
+.gotohugo .code pre {
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
+.gotohugo .code {
+	width:auto;
+	max-width:100%;
+    padding-left: 2em;
+    padding-right: 1em;
+	margin-right: 0em;
+	overflow-x: auto;
+	background-color: white;
+}
+
+.gotohugo .code pre {
+    color: #404040;
+}
+
+.doc pre {
+	background-color: white;
+	padding: 0.5em;
+}
+
+.gotohugo img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/* Narrow viewports */
+@media 
+only screen and (max-width: 60em) {
+
+	.gotohugo .source { 
+		display: block;
+		margin: 0;
+		border: none;
+	}
+
+	.gotohugo .source::before {
+		content: "Tip: Use a wide screen to view comments and code side-by-side.";
+		display: block;
+		text-align: center;
+		font-size: 0.8em;
+		font-style: italic;
+		padding: 0.5em;
+		margin: 0 auto 0 auto;
+		background: #f0f0f0;
+	}
+
+	.gotohugo .ccpair { 
+		display: block; 
+	}
+
+	.gotohugo .comment,
+	.gotohugo .code{
+		display: block; 
+		padding: 1em 1em 1em;
+		min-width: 0em;
+	}
+
+	.gotohugo .doc {
+		min-width: 0em;
+		padding-top: 0.1em;
+	}
+
+	.gotohugo .code {
+		padding-top: 0.1em;
+	}
+
+	.gotohugo div.tr.section.doc {
+		display: block;
+	}
+}
+
+/* Very narrow viewports */
+@media 
+only screen and (max-width: 45em) {
+
+	.gotohugo .ccpair {
+		padding: 0em;
+	}
+ 
+	.gotohugo .comment,
+	.gotohugo .code {
+		padding: 0.5em .5em .5em;
+	}
+}
+
+@media
+print {
+
+	body {
+		background-color: #fff;
+	}
+
+	.gotohugo .code {
+		background-color: #fff;
+	}
+
+}

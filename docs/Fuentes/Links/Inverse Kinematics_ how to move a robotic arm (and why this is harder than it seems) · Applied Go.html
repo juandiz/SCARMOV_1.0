@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://appliedgo.net/roboticarm/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<link href="https://gmpg.org/xfn/11" rel="profile">
+
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+	
+	
+
+
+	<title>Inverse Kinematics: how to move a robotic arm (and why this is harder than it seems) · Applied Go</title>
+
+	
+	<link rel="stylesheet" href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/normalize.css">
+	<link rel="stylesheet" href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/appliedgo.css">
+	<link rel="stylesheet" href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/gotohugo.css">
+	
+	<link href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/css" rel="stylesheet" type="text/css">
+	<link href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/css(1)" rel="stylesheet" type="text/css">
+	<link href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/css(2)" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/all.css">
+	
+
+	
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://appliedgo.net/touch-icon-144-precomposed.png">
+	<link href="https://appliedgo.net/favicon.png" rel="icon">
+
+	
+	
+	
+	
+
+	
+	<meta name="description" content="This article first glances over Inverse Kinematics. Then a small sample code implements a SCARA robot&#39;s arm movement.">
+
+	<meta name="keywords" content="Go,Golang,Inverse Kinematics,SCARA,Trigonometry">
+
+
+	
+
+	
+	<meta property="og:title" content="Inverse Kinematics: how to move a robotic arm (and why this is harder than it seems) - Applied Go">
+	<meta property="og:description" content="This article first glances over Inverse Kinematics. Then a small sample code implements a SCARA robot&#39;s arm movement.">
+	<meta property="og:site_name" content="Applied Go">
+	<meta property="og:url" content="https://appliedgo.net/roboticarm/">
+	<meta property="fb:app_id" content="">
+	<meta property="og:locale" content="en-us">
+
+	
+	
+	
+	
+	
+	<meta property="og:type" content="article">
+	<meta property="article:modified_time" content="2016-06-16 00:00:00 +0000 UTC">
+	<meta property="article:section" content="post">
+	<meta property="article:published_time" content=" 2016-06-16T00:00:00Z">
+	
+	<meta property="og:image" content="">
+	<meta property="og:image:url" content="">
+	
+	<meta property="article:tag" content="Inverse Kinematics">
+	
+	<meta property="article:tag" content="SCARA">
+	
+	<meta property="article:tag" content="Trigonometry">
+	
+	
+
+	
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image:src" content="">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Inverse Kinematics: how to move a robotic arm (and why this is harder than it seems)">
+	<meta name="twitter:description" content="This article first glances over Inverse Kinematics. Then a small sample code implements a SCARA robot&#39;s arm movement.">
+	<meta name="twitter:domain" content="Applied Go">
+	<meta name="twitter:creator" content="">
+
+	
+	<meta name="generator" content="Hugo 0.83.1">
+
+
+	
+	<script type="text/javascript" async="" src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/matomo.js.descarga"></script><script type="text/javascript">
+		var _paq = window._paq = window._paq || [];
+		 
+		_paq.push(["disableCookies"]);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.christophberger.com/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '1']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.type = 'text/javascript'; g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+		})();
+	</script>
+	<noscript>
+		<p><img src="//matomo.christophberger.com/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p>
+	</noscript>
+	
+
+
+<script type="text/javascript" src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/webforms.min.js.descarga"></script><script type="text/javascript" src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/jquery.min.js.descarga"></script><script async="" src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/embed.js.descarga" data-timestamp="1621804605016"></script><script type="text/javascript" src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/ml_jQuery.inputmask.bundle.min.js.descarga"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.305cef62f65d619287ed5bfd8a11158b.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.f485ba8b89bf2153fdb9f493ec342aed.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.bc826e2c6760336a4737669d17512963.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"></head>
+<body class="appliedgo-light">
+
+<div id="container">
+	<header id="site-header" class="table">
+	<div class="row">
+		<div id="site-logo">
+			<img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/AppliedGopher_200x200.png" alt="">
+		</div>
+		<div id="site-head" class="cell left">
+			<div id="site-title">
+				<h1><a href="https://appliedgo.net/">Applied Go</a></h1>
+			  <div id="tagline">Go beyond the Go tutorials</div>
+			</div>
+		</div>
+
+		<div class="cell center">
+			<nav id="site-nav">
+				<div class="liquid-box">
+					
+					<div class="site-nav-item liquid-cell"><a href="https://appliedgo.net/">Home</a></div>
+					
+					<div class="site-nav-item liquid-cell"><a href="https://appliedgo.net/about/">About</a></div>
+					
+					<div class="site-nav-item liquid-cell"><a href="https://appliedgo.net/faq/">FAQ</a></div>
+					
+					<div class="site-nav-item liquid-cell"><a href="https://appliedgo.net/tags/">Tags</a></div>
+					
+					<div class="site-nav-item liquid-cell"><a href="https://appliedgo.net/categories/">Categories</a></div>
+					
+				</div>
+				<div class="liquid-box">
+					
+					<div class="site-nav-external liquid-cell"> <a href="https://appliedgo.com/p/mastergo" target="_blank">Learn Go programming</a> <i class="fad fa-external-link" aria-hidden="true"></i> </div>
+					
+					<div class="site-nav-external liquid-cell"> <a href="https://youtube.com/c/AppliedGo" target="_blank">Watch Go screencasts</a> <i class="fad fa-external-link" aria-hidden="true"></i> </div>
+					
+				</div>
+			</nav>
+
+		</div>
+
+		<div id="subscribe" class="cell right">
+			<div class="iconprefix">Subscribe:</div>
+			<div class="subscribe-item">
+				<a href="https://appliedgo.net/subscribewithvideos" title="Get Applied Go updates by email"><i class="far fa-envelope-square fa-2x" aria-hidden="true"></i></a>
+				<a href="https://appliedgo.net/index.xml" type="application/rss+xml" title="Subscribe to the Applied Go RSS feed"><i class="far fa-rss-square fa-2x"></i></a>
+				
+				<a href="https://twitter.com/appliedgo" title="Follow Applied Go on Twitter"><i class="fab fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+			</div>
+		</div>
+
+	    <div id="site-url" class="cell right">https://appliedgo.net/</div>
+	</div>
+
+</header>
+
+
+   	<div class="outer">
+	    <main role="main" class="main post">
+    <article>
+        <div class="article-inner">
+
+            <header class="article-header">
+    <a href="https://appliedgo.net/roboticarm/">
+    <h1 class="article-title">
+        Inverse Kinematics: how to move a robotic arm (and why this is harder than it seems)
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fad fa-calendar-alt"></i>
+            <time datetime="2016-06-16 00:00:00 +0000 UTC">Jun 16, 2016</time>
+        </div>
+        
+        <div class="article-reading-time">
+            <i class="fad fa-book-open"></i>
+            8 minute read
+        </div>
+
+		
+            
+            
+				<div class="article-domain">
+                <i class="fad fa-folder-open"></i>
+                
+					<a class="article-category-link" href="https://appliedgo.net//categories/robotics">Robotics</a>
+					
+                
+            </div>
+            
+        
+
+        
+            
+            
+				<div class="article-tags">
+                <i class="fad fa-tags"></i>
+                
+					<a class="article-tags-link" href="https://appliedgo.net//tags/inverse-kinematics">Inverse Kinematics</a>
+					
+						&nbsp;·&nbsp;
+					
+                
+					<a class="article-tags-link" href="https://appliedgo.net//tags/scara">SCARA</a>
+					
+						&nbsp;·&nbsp;
+					
+                
+					<a class="article-tags-link" href="https://appliedgo.net//tags/trigonometry">Trigonometry</a>
+					
+                
+            </div>
+            
+        
+
+		<div class="agshare_top">
+			<div class="agshare_text">Share: </div>
+			
+
+
+<div class="agshare_buttons">
+
+	
+	
+
+	
+
+
+	
+
+	<a class="agshare_twitter agshare_button" href="https://twitter.com/intent/tweet?text=This%20article%20first%20glances%20over%20Inverse%20Kinematics.%20Then%20a%20small%20sample%20code%20implements%20a%20SCARA%20robot%27s%20arm%20movement.&amp;url=https%3a%2f%2fappliedgo.net%2froboticarm%2f%2F%3Fsrc%3Dt&amp;hashtags=golang,appliedgo&amp;related=AppliedGo" target="_blank"><i class="fab fa-twitter-square fa-2x" title="Share on Twitter" aria-hidden="true"></i></a>
+
+
+	
+
+	<a class="agshare_linkedin agshare_button" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fappliedgo.net%2froboticarm%2f%2F%3Fsrc%3Din&amp;title=Inverse%20Kinematics%3a%20how%20to%20move%20a%20robotic%20arm%20%28and%20why%20this%20is%20harder%20than%20it%20seems%29%20%C2%B7%20Applied%20Go&amp;summary=This%20article%20first%20glances%20over%20Inverse%20Kinematics.%20Then%20a%20small%20sample%20code%20implements%20a%20SCARA%20robot%27s%20arm%20movement." target="_blank"><i class="fab fa-linkedin fa-2x" title="Share on LinkedIn" aria-hidden="true"></i></a>
+</div>
+		</div>
+
+    </div>
+</header>
+
+            <div class="article-entry">
+                <p></p><div class="gotohugo ">
+<div class="summary doc "><p></p>
+<p>So you have built a robotic arm? Great, let’s write some Go to make it serve your five o’clock tea. Sounds simple enough. Or is it?</p>
+<p></p></div> <!--summary doc--><p></p>
+<p>
+
+</p><div class="intro doc "><p></p>
+<p><img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/tearobot.jpg" alt="Robotic arm serving tea"></p>
+<h2 id="forward-kinematics">Forward kinematics</h2>
+<p>Calculating the current coordinates of a robot’s hand is easy.</p>
+<p>We just need to look at each segment of a robot’s arm–the coordinates of the segment’s base, the direction of the joint’s axis, the angle between this segment and the next one, and the length of the segment–in order to calculate where the end of this segment is. Repeat this with each segment, until we arrive at the robot’s hand. Et voilà: we determined the hand’s position.</p>
+<p>This is called forward kinematics.</p>
+<h2 id="inverse-kinematics">Inverse kinematics</h2>
+<p>Now the robot’s arm must adjust each joint’s angle in order to move its hand over the cup. This is quite the opposite of the previous calculation - here, we start with a given position and want to know how to rotate each segment of the arm.</p>
+<p>It turns out that this is <a href="https://en.wikipedia.org/wiki/Arm_solution">much harder</a> than the forward case. And whenever something is hard to solve, there are usually several different approaches available for solving that problem. For inverse kinematics, there are three of them:</p>
+<ol>
+<li>The algebraic approach: This basically works by solving (frankly, rather complex) matrix equations.</li>
+<li>The geometric approach: The idea is to combine knowledge about the robotic arm’s geometry with suitable trigonometric formulas.</li>
+<li>The numeric approach: Take a guess and look how far we are off. Move one or more segments to locally minimize the error. Repeat.</li>
+</ol>
+<p>Which one to pick? After all, each of them has its raison d’être.</p>
+<p>For the sake of brevity, let’s drop the first one. It involves a lot of matrix calculations, and frankly, I haven’t done any since the last millennium or so.</p>
+<p>The second one, the geometric approach, can become quite complex when the robot’s arm consists of many segments and joints. Luckily, all complexity vanishes in the case of a simple robotic arm with only two segments, so let’s go with this approach. (In a future article, I’ll give the numeric approach a try.)</p>
+<p>At this point, I must admit that when I started working on this article, I expected that the formulas for the simple two-segment arm could easily be generalized to multi-segment, multi-joint robotic arms, but I found that this is not the case. So for this article, we’ll stick with what is probably the most simple robotic arm with rotary joints.</p>
+<h2 id="the-scara-robot">The SCARA robot</h2>
+<p>Our robotic arm shall meet the following requirements.</p>
+<ul>
+<li>The arm has only two segments of fixed length.</li>
+<li>The segments can only rotate around their base joint; there is no sliding movement.</li>
+<li>The axes of both joints have the same direction.</li>
+<li>There is no hand attached to the end of the arm. (Robot hands would have additional degrees of freedom, and remember that we want to keep things simple. Now you know why our robot just serves tea.)</li>
+</ul>
+<p>A robot of this kind is called a <a href="https://en.wikipedia.org/wiki/SCARA">SCARA robot</a>.</p>
+<p>Here is a schematic diagram of our robot:</p>
+<p><img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/positions.png" alt="The SCARA robot and a cup of tea"></p>
+<h2 id="applying-the-geometric-approach-to-the-scara-robot">Applying the geometric approach to the SCARA robot</h2>
+<p>Let me just tweak the diagram a little by replacing some of the labels and adding one line and two angles:</p>
+<p><img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/robotarm.png" alt="The SCARA robotic arm as a triangle"></p>
+<p>This diagram tells us a couple of things:</p>
+<ul>
+<li>The segments have the length <em>len1</em> and <em>len2</em>, respectively.</li>
+<li>The root joint describes an angle <em>A1</em> measured from the x axis.</li>
+<li>The second joint describes an angle <em>A2</em> measured from the first segment (counterclockwise in both cases).</li>
+<li>The tip of segment 2 points to <em>(x,y)</em>, and we want to calculate back from that point to the yet unknown values of <em>A1</em> and <em>A2</em>.</li>
+</ul>
+<p>In the diagram you also see a new dotted line named <code>dist</code>. It points from <em>(0,0)</em> to <em>(x,y)</em>, and as you can easily see, the three lines <code>dist</code>, <em>len1</em>, and <em>len2</em> define a triangle. Furthermore, <em>dist</em> divides angle <em>A1</em> into two angles <em>D1</em> and <em>D2</em>.</p>
+<p>Now is a good moment to dig out an old trig formula you may remember from school: The law of cosines.</p>
+<p><img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/lawofcosines.png" alt="The Law of Cosines"></p>
+<p>The law of cosines (see the first formula in the figure above) is a generalization of the Pythagorean theorem (c<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup> for right(-angled) triangles) to arbitrary triangles. We do not need the basic form, but rather the transformed version that you can see below the original formula. With this version, we can calculate angle <em>C</em> from the triangle’s sides <em>a</em>, <em>b</em>, and <em>c</em>. This comes handy in two places, as we’ll see shortly.</p>
+<p>So how do we calculate <em>A1</em> and <em>A2</em>?</p>
+<ul>
+<li>
+<p>From the robotic arm diagram above (the one with <em>D1</em>, <em>D2</em>, <em>dist</em>, etc), we can directly derive the first formula:</p>
+<pre><code>A1 = D1 + D2
+</code></pre>
+</li>
+<li>
+<p><em>D1</em> is fairly easy to calculate. In the following diagram, <em>x</em>, <em>y</em>, and <em>dist</em> define a right-angled triangle. Here, <em>D1</em> can be calculated in two ways: The arcsine of <em>y/dist</em> or the arctangent of <em>y/x</em>. As we have x and y readily available, let’s choose the arctangent formula.</p>
+<p>However, there is a problem hidden here. The formulas certainly are correct if x and y are positive, but what if either of the two, or even both, are negative? Luckily, a solution is available in form of a method from the standard library: <code>math.Atan2(y, x)</code>. It delivers the correct result for all possible combinations of x and y. (More details <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions#Application:_finding_the_angle_of_a_right_triangle">on Wikipedia</a>.)</p>
+<p><img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/arctan.png" alt="D1 is calculated as arctangent of y/x"></p>
+</li>
+<li>
+<p><em>D2</em> requires the law of cosines.
+Basically, we just map our “robot triangle” to the “law of cosines” triangle by using <em>dist</em> as <em>a</em>,
+<em>len1</em> as <em>b</em>, and <em>len2</em> as <em>c</em>. The resulting angle <em>C</em> is our <em>D2</em>.</p>
+<p><img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/calcd2.png" alt="D2 and the law of cosines"></p>
+<ul>
+<li>Now only <em>A2</em> is left. Luckily, we can reuse the law of cosines for this. We only need to map our triangle to the one from the law of cosines with different parameter mappings than for <em>D2</em>: <em>len1</em> as <em>a</em>, <em>len2</em> as <em>b</em>, and <em>dist</em> as <em>c</em>.</li>
+</ul>
+<p><img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/calca2.png" alt="Calculating A2"></p>
+</li>
+</ul>
+<p>And that’s it. Let’s pour this into code now.</p>
+<h2 id="the-code">The code</h2>
+<p></p></div> <!--intro doc--><p></p>
+<p></p><div class="source ">
+<div class="ccpair ">
+<div class="comment "><p></p>
+<p></p></div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+Only the plain <code>math</code> package is needed for the formulas.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">import</span> (
+	<span style="color:#b84">"fmt"</span>
+	<span style="color:#b84">"math"</span>
+)
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+The lengths of the two segments of the robot’s arm.
+Using the same length for both segments allows the robot
+to reach the <em>(0,0)</em> coordinate.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">const</span> (
+	len1 = <span style="color:#099">10.0</span>
+	len2 = <span style="color:#099">10.0</span>
+)
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+The law of cosines, transfomred so that <em>C</em> is the unknown.
+The names of the sides and angles correspond to the standard
+names in mathematical writing. Later, we have to map the
+sides and angles from our scenario to a, b, c, and C, respectively.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> <span style="color:#900;font-weight:bold">lawOfCosines</span>(a, b, c <span style="color:#458;font-weight:bold">float64</span>) (C <span style="color:#458;font-weight:bold">float64</span>) {
+	<span style="font-weight:bold">return</span> math.<span style="color:#900;font-weight:bold">Acos</span>((a<span style="font-weight:bold">*</span>a <span style="font-weight:bold">+</span> b<span style="font-weight:bold">*</span>b <span style="font-weight:bold">-</span> c<span style="font-weight:bold">*</span>c) <span style="font-weight:bold">/</span> (<span style="color:#099">2</span> <span style="font-weight:bold">*</span> a <span style="font-weight:bold">*</span> b))
+}
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+The distance from <em>(0,0)</em> to <em>(x,y)</em>.
+HT to Pythagoras.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> <span style="color:#900;font-weight:bold">distance</span>(x, y <span style="color:#458;font-weight:bold">float64</span>) <span style="color:#458;font-weight:bold">float64</span> {
+	<span style="font-weight:bold">return</span> math.<span style="color:#900;font-weight:bold">Sqrt</span>(x<span style="font-weight:bold">*</span>x <span style="font-weight:bold">+</span> y<span style="font-weight:bold">*</span>y)
+}
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+Calculating the two joint angles for given x and y.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> <span style="color:#900;font-weight:bold">angles</span>(x, y <span style="color:#458;font-weight:bold">float64</span>) (A1, A2 <span style="color:#458;font-weight:bold">float64</span>) {
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+First, get the length of line <em>dist</em>.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	dist <span style="font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">distance</span>(x, y)
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+Calculating angle D1 is trivial.
+<code>Atan2</code> is a modified <em>arctan()</em> function that <a href="https://golang.org/pkg/math/#Atan2">returns unambiguous results.</a>
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	D1 <span style="font-weight:bold">:=</span> math.<span style="color:#900;font-weight:bold">Atan2</span>(y, x)
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+D2 can be calculated using the law of cosines where
+a = dist, b = len1, and c = len2.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	D2 <span style="font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">lawOfCosines</span>(dist, len1, len2)
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+Then A1 is simply the sum of D1 and D2.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	A1 = D1 <span style="font-weight:bold">+</span> D2
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+A2 can also be calculated with the law of cosine, but this time with
+a = len1, b = len2, and c = dist.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	A2 = <span style="color:#900;font-weight:bold">lawOfCosines</span>(len1, len2, dist)
+
+	<span style="font-weight:bold">return</span> A1, A2
+}
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+<div class="ccpair ">
+<div class="comment ">
+Convert radians into degrees.
+</div> <!--comment-->
+<div class="code "><p></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span> <span style="color:#900;font-weight:bold">deg</span>(rad <span style="color:#458;font-weight:bold">float64</span>) <span style="color:#458;font-weight:bold">float64</span> {
+	<span style="font-weight:bold">return</span> rad <span style="font-weight:bold">*</span> <span style="color:#099">180</span> <span style="font-weight:bold">/</span> math.Pi
+}
+
+<span style="font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#b84">"Lets do some tests. First move to (5,5):"</span>)
+	x, y <span style="font-weight:bold">:=</span> <span style="color:#099">5.0</span>, <span style="color:#099">5.0</span>
+	a1, a2 <span style="font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">angles</span>(x, y)
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#b84">"x=%v, y=%v: A1=%v (%v°), A2=%v (%v°)\n"</span>, x, y, a1, <span style="color:#900;font-weight:bold">deg</span>(a1), a2, <span style="color:#900;font-weight:bold">deg</span>(a2))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#b84">"If y is 0 and x = Sqrt(10^2 + 10^2), then alpha should become 45 degrees and beta should become 90 degrees."</span>)
+	x, y = math.<span style="color:#900;font-weight:bold">Sqrt</span>(<span style="color:#099">200</span>), <span style="color:#099">0</span>
+	a1, a2 = <span style="color:#900;font-weight:bold">angles</span>(x, y)
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#b84">"x=%v, y=%v: A1=%v (%v°), A2=%v (%v°)\n"</span>, x, y, a1, <span style="color:#900;font-weight:bold">deg</span>(a1), a2, <span style="color:#900;font-weight:bold">deg</span>(a2))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#b84">"Now let's try moving to (1, 19)."</span>)
+	x, y = <span style="color:#099">1</span>, <span style="color:#099">19</span>
+	a1, a2 = <span style="color:#900;font-weight:bold">angles</span>(x, y)
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#b84">"x=%v, y=%v: A1=%v (%v°), A2=%v (%v°)\n"</span>, x, y, a1, <span style="color:#900;font-weight:bold">deg</span>(a1), a2, <span style="color:#900;font-weight:bold">deg</span>(a2))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#b84">"n extreme case: (20,0). The arm needs to stretch along the y axis."</span>)
+	x, y = <span style="color:#099">20</span>, <span style="color:#099">0</span>
+	a1, a2 = <span style="color:#900;font-weight:bold">angles</span>(x, y)
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#b84">"x=%v, y=%v: A1=%v (%v°), A2=%v (%v°)\n"</span>, x, y, a1, <span style="color:#900;font-weight:bold">deg</span>(a1), a2, <span style="color:#900;font-weight:bold">deg</span>(a2))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#b84">"And (0,20)."</span>)
+	x, y = <span style="color:#099">0</span>, <span style="color:#099">20</span>
+	a1, a2 = <span style="color:#900;font-weight:bold">angles</span>(x, y)
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#b84">"x=%v, y=%v: A1=%v (%v°), A2=%v (%v°)\n"</span>, x, y, a1, <span style="color:#900;font-weight:bold">deg</span>(a1), a2, <span style="color:#900;font-weight:bold">deg</span>(a2))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#b84">"Moving to (0,0) technically works if the arm segments have the same length, and if the arm does not block itself. Still the result looks a bit weird!?"</span>)
+	x, y = <span style="color:#099">0</span>, <span style="color:#099">0</span>
+	a1, a2 = <span style="color:#900;font-weight:bold">angles</span>(x, y)
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#b84">"x=%v, y=%v: A1=%v (%v°), A2=%v (%v°)\n"</span>, x, y, a1, <span style="color:#900;font-weight:bold">deg</span>(a1), a2, <span style="color:#900;font-weight:bold">deg</span>(a2))
+
+	fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#b84">"What happens if the target point is outside the reach? Like (20,20)."</span>)
+	x, y = <span style="color:#099">20</span>, <span style="color:#099">20</span>
+	a1, a2 = <span style="color:#900;font-weight:bold">angles</span>(x, y)
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#b84">"x=%v, y=%v: A1=%v (%v°), A2=%v (%v°)\n"</span>, x, y, a1, <span style="color:#900;font-weight:bold">deg</span>(a1), a2, <span style="color:#900;font-weight:bold">deg</span>(a2))
+}
+
+</code></pre></div><p></p></div> <!--code-->
+</div> <!--ccpair-->
+</div> <!--source-->
+<div class="doc "><p></p>
+<h2 id="homework-assignment">“Homework assignment”</h2>
+<p>Why does <em>A1</em> evaluate to <code>NaN</code> (“Not a Number”) when we try moving the arm to (0,0)?</p>
+<p>Hint 1: It is about the law of cosines function.</p>
+<p>Hint 2: The arm does not form a triangle in this case. (Yes, this hint is actually a spoiler, sorry…)</p>
+<h2 id="outlook">Outlook</h2>
+<p>In a future article we’ll look into the numeric approach. That is, we let the robot iteratively move its arm in small steps until it reaches the target.</p>
+<p>Next week’s article is a lightweight take on Dependency Injection.</p>
+<p>Until then, have fun!</p>
+<hr>
+<p>Updates</p>
+<p>2017-01-13: Fixed: The code uses Atan2 to calculate D1, but the text used Pythagoras.
+</p></div> <!--doc--><p></p>
+<p></p></div> <!--gotohugo--><p></p>
+            </div>
+            <footer class="article-footer">
+
+    
+
+    <section id="joinMailingList">
+
+        <div class="joinMailingListText">
+            
+
+
+<div id="subscription-form">
+
+    
+
+    
+
+
+    <script type="text/javascript" src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/f5r1p4.js.descarga"></script><link rel="stylesheet" href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/css(3)"><link rel="stylesheet" href="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/css(4)">
+
+<style>
+
+	
+		
+
+	#mlb2-7632326,
+	#mlb2-7632326 *,
+	#mlb2-7632326 a:hover,
+	#mlb2-7632326 a:visited,
+	#mlb2-7632326 a:focus,
+	#mlb2-7632326 a:active {
+	    overflow:visible;
+	    position:static;
+	    background:none;
+	    border:none;
+	    bottom:auto;
+	    clear:none;
+	    cursor:default;
+	    float:none;
+	    letter-spacing:normal;
+	    line-height:normal;
+	    text-align:left;
+	    text-indent:0;
+	    text-transform:none;
+	    visibility:visible;
+	    white-space:normal;
+
+	    max-height:none;
+	    max-width:none;
+	    left:auto;
+	    min-height:0;
+	    min-width:0;
+	    right:auto;
+	    top:auto;
+	    width:auto;
+	    z-index:auto;
+
+	    text-shadow: none;
+	    box-shadow: none;
+	    outline: medium none;
+	}
+
+	#mlb2-7632326 a:hover {
+		cursor: pointer !important;
+	}
+
+	#mlb2-7632326 h4 {
+	    font-weight: normal;
+	}
+
+	#mlb2-7632326 .subscribe-form {
+	
+		padding: 20px;
+				width: 560px !important;
+				border: 2px solid #F6F6F6 !important;
+		background: #FFFFFF none !important;
+		border-radius: 0px !important;
+		box-sizing: border-box !important;
+
+	
+	}
+
+	#mlb2-7632326 .ml-block-form {
+	
+		margin-bottom: 0px;
+	
+	}
+
+    #mlb2-7632326 .subscribe-form .form-section {
+    
+        margin-bottom: 20px;
+        width: 100%;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section.mb10 {
+    
+        margin-bottom: 10px;
+        float: left;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section.mb0 {
+    
+        margin-bottom: 0px;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section h4 {
+    
+        margin: 0px 0px 10px 0px !important;
+        padding: 0px !important;
+        color: #000000 !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 24px !important;
+        line-height: 100%;
+        text-align: left !important;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section p,
+    #mlb2-7632326 .subscribe-form .form-section li {
+    
+        line-height: 150%;
+        padding: 0px !important;
+        margin: 0px 0px 10px 0px;
+        color: #000000 !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 16px !important;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section a {
+    
+        font-size: 16px;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section .confirmation_checkbox {
+    
+        line-height: 150%;
+        padding: 0px !important;
+        margin: 0px 0px 15px 0px !important;
+        color: #000000 !important;
+        font-family: 'Open Sans', sans-serif !important;
+        font-size: 12px !important;
+        font-weight: normal !important;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section .confirmation_checkbox input[type="checkbox"] {
+    
+        display: inline-block;
+        margin-right: 5px !important;
+        opacity: 1;
+        -webkit-appearance: checkbox;
+        -moz-appearance: checkbox;
+        appearance: checkbox;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section .form-group {
+    
+        margin-bottom: 15px;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section .form-group label {
+    
+        float: left;
+        margin-bottom: 10px;
+        width: 100%;
+        line-height: 100%;
+        color: #000000 !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 16px !important;
+    
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section .checkbox {
+        
+
+        width: 100%;
+        margin: 0px 0px 10px 0px;
+        
+
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section .checkbox label {
+
+    
+
+        color: #000000 !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 16px !important;
+    
+
+    }
+
+    #mlb2-7632326 .subscribe-form .form-section .checkbox input {
+
+    
+        margin: 0px 5px 0px 0px;
+    
+
+    }
+
+     #mlb2-7632326 .subscribe-form .form-section .checkbox input[type="checkbox"] {
+
+    
+      display: inline-block;
+      opacity: 1;
+      -webkit-appearance: checkbox;
+      -moz-appearance: checkbox;
+      appearance: checkbox;
+    
+
+    }
+
+
+    #mlb2-7632326.ml-subscribe-form .form-group .form-control {
+
+    
+
+        width: 100%;
+        font-size: 13px;
+        padding: 10px 10px;
+        height: auto;
+        font-family: Arial;
+        border-radius: 0px;
+        border: 1px solid #cccccc !important;
+        color: #000000 !important;
+        background-color: #FFFFFF !important;
+    	-webkit-box-sizing: border-box;
+    	-moz-box-sizing: border-box;
+    	box-sizing: border-box;
+        clear: left;
+
+    
+
+    }
+
+    #mlb2-7632326.ml-subscribe-form button {
+
+    
+
+        border: none !important;
+        cursor: pointer !important;
+        width: 100% !important;
+        border-radius: 0px !important;
+        height: 40px !important;
+        background-color: #F2A14B !important;
+        color: #FFFFFF !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 16px !important;
+        text-align: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: relative!important;
+
+    
+
+    }
+
+    #mlb2-7632326.ml-subscribe-form button.gradient-on {
+
+    
+
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+            background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+            background: linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+
+    
+
+    }
+
+    #mlb2-7632326.ml-subscribe-form button.gradient-on:hover {
+
+    
+
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+            background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+            background: linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+
+    
+
+    }
+
+    #mlb2-7632326.ml-subscribe-form button[disabled] {
+
+    
+
+            cursor: not-allowed!important;
+
+    
+
+    }
+
+    #mlb2-7632326.ml-subscribe-form .form-section.ml-error label {
+
+    
+
+        color: red!important;
+
+    
+
+    }
+
+    #mlb2-7632326.ml-subscribe-form .form-group.ml-error label {
+
+    
+
+        color: red!important;
+
+    
+
+    }
+
+    #mlb2-7632326.ml-subscribe-form .form-group.ml-error .form-control  {
+
+    
+
+        border-color: red!important;
+
+    
+
+    }
+    
+
+        #mlb2-7632326 .ml-vertical-align-center {
+        text-align: center;
+        display: block;
+    }
+
+	#mlb2-7632326 .ml-block-success,
+    #mlb2-7632326 form.ml-block-form {
+		display: inline-block;
+		        width: 560px;
+            }
+    
+    
+    
+
+    
+    @media (max-width: 768px) {
+
+	    #mlb2-7632326 {
+
+		    width: 100% !important;
+
+	    }
+
+	    #mlb2-7632326 form.ml-block-form,
+	    #mlb2-7632326.ml-subscribe-form .subscribe-form {
+
+			width: 100% !important;
+
+		}
+
+	}
+
+	
+  
+</style>
+
+
+
+<div id="mlb2-7632326" class="ml-subscribe-form ml-subscribe-form-7632326">
+  <div class="ml-vertical-align-center">
+    <div class="subscribe-form ml-block-success" style="display:none">
+        <div class="form-section">
+            <h4>Get weekly news around Go!</h4>
+            <p>Thank you for subscribing! Please check your email inbox. We sent you an email to confirm your subscription. After this step, the subscription will be enabled.</p>
+    </div>
+  </div>
+  <form class="ml-block-form" action="https://static.mailerlite.com/webforms/submit/f5r1p4" data-id="746134" data-code="f5r1p4" method="POST" target="_blank">
+    <div class="subscribe-form">
+        <div class="form-section mb10">
+            <h4>Get weekly news around Go!</h4>
+                  <p>Every week, I compile a list of news from the world of Go, so you don't have to dig for the info yourself.</p>
+<p>If you subscribe to the weekly newsletter, you also receive ten preview videos from my Master Go course by email. (You can also subscribe without this, see the link below.)</p>
+<p>No spam. You can unsubscribe at any time.</p>
+<p><span style="font-size: 13px;">Please note: You will get a confirmation email at the email address entered below.&nbsp;<strong>Ensure to click the confirmation button in this email</strong> to get subscribed.&nbsp;</span></p>
+<p><span style="font-size: 13px;">If you do not get an email within a couple of minutes, check your spam folder(s).</span></p>
+<p><span style="font-size: 13px;">Tip: Set emails from appliedgo.net on the <strong>whitelist</strong> of your spam filter to ensure the newsletter arrives at your inbox.</span></p>
+          </div>
+        <div class="form-section">
+            <div class="form-group ml-field-name">
+                <input type="text" name="fields[name]" class="form-control" placeholder="Name or nickname (optional) - allow me to greet you by name" value="" autocomplete="name" x-autocompletetype="name" spellcheck="false" autocapitalize="off" autocorrect="off" aria-invalid="false">
+      </div>
+            <div class="form-group ml-field-email ml-validate-required ml-validate-email">
+                <input type="email" name="fields[email]" class="form-control" placeholder="Email*" value="" autocomplete="email" x-autocompletetype="email" spellcheck="false" autocapitalize="off" autocorrect="off" aria-invalid="false">
+      </div>
+          </div>
+
+    
+                                    <div class="form-section ml-validate-required">
+      <label class="confirmation_checkbox">
+      <input type="checkbox" aria-invalid="false"> I would like to subscribe to the Applied Go Weekly Newsletter.
+      </label>
+    </div>
+        <input type="hidden" name="ml-submit" value="1" aria-invalid="false">
+        <button type="submit" class="primary">
+    Yes, subscribe me!
+    </button>
+    <button disabled="disabled" style="display: none;" type="button" class="loading">
+    <img src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/rolling@2x.gif" width="20" height="20" style="width: 20px; height: 20px;">
+    </button>
+      </div>
+  </form>
+  <script>
+    function ml_webform_success_7632326 () {
+               var $ = ml_jQuery || jQuery;
+
+        $('.ml-subscribe-form-7632326 .ml-block-success').show();
+        $('.ml-subscribe-form-7632326 .ml-block-form').hide();
+        };
+  </script>
+</div>
+</div>
+
+
+    
+
+    
+
+    <div id="subscription-link"><a href="https://appliedgo.net/subscribe">Or subscribe without receiving videos</a></div>
+
+</div>
+        </div>
+
+    </section>
+
+    <a data-url="https://appliedgo.net/roboticarm/" data-id="35df6ce6c8e82ea39839753f73197c7b" class="article-share-link">
+        Share
+    </a>
+
+    
+
+    <div class="agshare_bottom">
+        <div class="agshare_text">Like this article? Tell your friends!</div>
+        
+
+
+<div class="agshare_buttons">
+
+	
+	
+
+	
+
+
+	
+
+	<a class="agshare_twitter agshare_button" href="https://twitter.com/intent/tweet?text=This%20article%20first%20glances%20over%20Inverse%20Kinematics.%20Then%20a%20small%20sample%20code%20implements%20a%20SCARA%20robot%27s%20arm%20movement.&amp;url=https%3a%2f%2fappliedgo.net%2froboticarm%2f%2F%3Fsrc%3Dt&amp;hashtags=golang,appliedgo&amp;related=AppliedGo" target="_blank"><i class="fab fa-twitter-square fa-2x" title="Share on Twitter" aria-hidden="true"></i></a>
+
+
+	
+
+	<a class="agshare_linkedin agshare_button" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fappliedgo.net%2froboticarm%2f%2F%3Fsrc%3Din&amp;title=Inverse%20Kinematics%3a%20how%20to%20move%20a%20robotic%20arm%20%28and%20why%20this%20is%20harder%20than%20it%20seems%29%20%C2%B7%20Applied%20Go&amp;summary=This%20article%20first%20glances%20over%20Inverse%20Kinematics.%20Then%20a%20small%20sample%20code%20implements%20a%20SCARA%20robot%27s%20arm%20movement." target="_blank"><i class="fab fa-linkedin fa-2x" title="Share on LinkedIn" aria-hidden="true"></i></a>
+</div>
+	</div>
+
+	
+
+	
+
+	
+
+	
+
+    
+
+     
+</footer>
+        </div>
+
+        
+
+    </article>
+
+    
+    <section id="comments">
+            <div id="disqus_thread"><iframe id="dsq-app8076" name="dsq-app8076" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 1446px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "appliedgo" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </section>
+    
+</main>
+
+	</div>
+</div>
+
+<footer id="site-footer">
+	<div class="cell left">
+		<a href="https://appliedgo.net/licenses/">© 2016-2021 Christoph Berger</a>
+	</div>
+	<div class="cell center">
+		<a href="https://appliedgo.net/imprint/">Legal Notice/Impressum</a>
+		&nbsp;·&nbsp;
+		<a href="https://appliedgo.net/privacy/">Privacy Policy/Datenschutzerklärung</a>
+		&nbsp;·&nbsp;
+		<a href="https://appliedgo.net/licenses/">Licenses</a>
+		
+	</div>
+	<div class="cell right">
+		<div class="iconprefix">Find me on:</div>
+		<div id="findmeon"><a href="https://github.com/appliedgo" title="The code of the blog posts" target="_blank"><i class="fab fa-github-square fa-2x" aria-hidden="true"></i></a>
+			<a href="https://twitter.com/chrberger" title="Christoph on Twitter"><i class="fab fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+			
+			
+			
+			
+			<a href="https://de.linkedin.com/in/christophberger1" title="Christoph on LinkedIn" target="_blank"><i class="fab fa-linkedin fa-2x" aria-hidden="true"></i></a>
+			<a href="https://www.youtube.com/c/AppliedGo" title="Applied Go on YouTube" target="_blank"><i class="fab fa-youtube-square fa-2x" aria-hidden="true"></i></a>
+		</div>
+	</div>
+</footer>
+
+
+
+
+
+<iframe style="display: none;" src="./Inverse Kinematics_ how to move a robotic arm (and why this is harder than it seems) · Applied Go_files/saved_resource(1).html"></iframe><script>mendeleyWebImporter = {
+  downloadPdfs(t) { return this._call('downloadPdfs', [t]); },
+  open() { return this._call('open', []); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.5832486572319133', methodName, methodArgs }, 'https://appliedgo.net');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script></body></html>

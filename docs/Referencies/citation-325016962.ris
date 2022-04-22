@@ -1,0 +1,13 @@
+TY  - JOUR
+AU  - Shintake, Jun
+AU  - Cacucciolo, Vito
+AU  - Floreano, Dario
+AU  - Shea, Herbert
+PY  - 2018/05/07
+SP  - 1707035
+N2  - Advances in soft robotics, materials science, and stretchable electronics have enabled rapid progress in soft grippers. Here, a critical overview of soft robotic grippers is presented, covering different material sets, physical principles, and device architectures. Soft gripping can be categorized into three technologies, enabling grasping by: a) actuation, b) controlled stiffness, and c) controlled adhesion. A comprehensive review of each type is presented. Compared to rigid grippers, end‐effectors fabricated from flexible and soft components can often grasp or manipulate a larger variety of objects. Such grippers are an example of morphological computation, where control complexity is greatly reduced by material softness and mechanical compliance. Advanced materials and soft components, in particular silicone elastomers, shape memory materials, and active polymers and gels, are increasingly investigated for the design of lighter, simpler, and more universal grippers, using the inherent functionality of the materials. Embedding stretchable distributed sensors in or on soft grippers greatly enhances the ways in which the grippers interact with objects. Challenges for soft grippers include miniaturization, robustness, speed, integration of sensing, and control. Improved materials, processing methods, and sensing play an important role in future research.
+T1  - Soft Robotic Grippers
+VL  - 30
+DO  - 10.1002/adma.201707035
+JO  - Advanced Materials
+ER  - 

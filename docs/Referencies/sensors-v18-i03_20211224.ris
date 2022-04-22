@@ -1,0 +1,18 @@
+TY  - EJOU
+AU  - Gandarias, Juan M.
+AU  - Gómez-de-Gabriel, Jesús M.
+AU  - García-Cerezo, Alfonso J.
+TI  - Enhancing Perception with Tactile Object Recognition in Adaptive Grippers for Human–Robot Interaction
+T2  - Sensors
+
+PY  - 2018
+VL  - 18
+IS  - 3
+SN  - 1424-8220
+
+AB  - The use of tactile perception can help first response robotic teams in disaster scenarios, where visibility conditions are often reduced due to the presence of dust, mud, or smoke, distinguishing human limbs from other objects with similar shapes. Here, the integration of the tactile sensor in adaptive grippers is evaluated, measuring the performance of an object recognition task based on deep convolutional neural networks (DCNNs) using a flexible sensor mounted in adaptive grippers. A total of 15 classes with 50 tactile images each were trained, including human body parts and common environment objects, in semi-rigid and flexible adaptive grippers based on the fin ray effect. The classifier was compared against the rigid configuration and a support vector machine classifier (SVM). Finally, a two-level output network has been proposed to provide both object-type recognition and human/non-human classification. Sensors in adaptive grippers have a higher number of non-null tactels (up to 37% more), with a lower mean of pressure values (up to 72% less) than when using a rigid sensor, with a softer grip, which is needed in physical human–robot interaction (pHRI). A semi-rigid implementation with 95.13% object recognition rate was chosen, even though the human/non-human classification had better results (98.78%) with a rigid sensor.
+KW  - adaptive gripper
+KW  - tactile sensors
+KW  - human–robot interaction
+KW  - object recognition
+DO  - 10.3390/s18030692

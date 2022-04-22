@@ -1,0 +1,21 @@
+TY  - EJOU
+AU  - Suder, Jiří
+AU  - Bobovský, Zdenko
+AU  - Mlotek, Jakub
+AU  - Vocetka, Michal
+AU  - Oščádal, Petr
+AU  - Zeman, Zdeněk
+TI  - Structural Optimization Method of a FinRay Finger for the Best Wrapping of Object
+T2  - Applied Sciences
+
+PY  - 2021
+VL  - 11
+IS  - 9
+SN  - 2076-3417
+
+AB  - Soft gripping, in which the gripper adapts to differently shaped objects, is in great demand for use in unknown or dynamically changing environments and is one of the main research subjects in soft robotics. Several systems have already been created, one of which is a passive shape-adaptable finger based on the FinRay effect. The geometric shape of this finger ensures that the finger wraps around the object it grips. FinRay fingers have been studied in several studies, which have changed the internal structure and examined how gripping force’s dependence on finger deformation changes. So far, however, no specific way has been determined to evaluate the proposed finger regarding its ability to wrap around the object. This work comes up with a new and simple method to evaluate the finger’s wrapping around the object mathematically. Based on this evaluation method, several different patterns of the internal structure of FinRay fingers were tested. The fingers were first tested in a simulation program, which simulated a steel roller indentation with a diameter of 20 mm in the middle of the finger’s contact surface. Based on the simulation results, selected types of structure were made by the Fused Filament Fabrication method from a flexible filament and tested on a real test rig to verify the results of the simulation and compare it with the real behaviour. According to the methodology used, the results show that the most suitable structure of the selected tested fingers from the point of view of wrapping the finger around the object is a structure without internal filling. Designers can simply use the new evaluation method to compare their designed finger variants and select the most suitable one according to the ability to wrap around the gripped object. They can also use graphs from this work’s results and determine the finger’s dimensions without internal filling according to the required forces and deflection.
+KW  - FinRay finger
+KW  - soft robotics
+KW  - soft gripper
+KW  - wrapping of object
+DO  - 10.3390/app11093858

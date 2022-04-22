@@ -1,0 +1,22 @@
+TY  - EJOU
+AU  - Stassi, Stefano
+AU  - Cauda, Valentina
+AU  - Canavese, Giancarlo
+AU  - Pirri, Candido F.
+TI  - Flexible Tactile Sensing Based on Piezoresistive Composites:  A Review
+T2  - Sensors
+
+PY  - 2014
+VL  - 14
+IS  - 3
+SN  - 1424-8220
+
+AB  - The large expansion of the robotic field in the last decades has created a growing interest in the research and development of tactile sensing solutions for robot hand and body integration. Piezoresistive composites are one of the most widely employed materials for this purpose, combining simple and low cost preparation with high flexibility and conformability to surfaces, low power consumption, and the use of simple read-out electronics. This work provides a review on the different type of composite materials, classified according to the conduction mechanism and analyzing the physics behind it. In particular piezoresistors, strain gauges, percolative and quantum tunnelling devices are reviewed here, with a perspective overview on the most used filler types and polymeric matrices. A description of the state-of-the-art of the tactile sensor solutions from the point of view of the architecture, the design and the performance is also reviewed, with a perspective outlook on the main promising applications.
+KW  - piezoresistivity
+KW  - composite materials
+KW  - percolation threshold
+KW  - quantum tunnelling conduction
+KW  - strain gauge
+KW  - piezo-MEMS
+KW  - flexible tactile sensor
+DO  - 10.3390/s140305296

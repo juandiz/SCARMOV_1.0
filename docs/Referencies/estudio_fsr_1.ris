@@ -1,0 +1,32 @@
+TY  - JOUR
+DB  - PubMed
+AU  - Paredes-Madrid, Leonel
+AU  - Palacio, Carlos A
+AU  - Matute, Arnaldo
+AU  - Parra Vargas, Carlos A
+T1  - Underlying Physics of Conductive Polymer Composites and Force Sensing Resistors (FSRs) under Static Loading Conditions
+LA  - eng
+SN  - 1424-8220
+Y1  - 2017/09/14
+AB  - Conductive polymer composites are manufactured by randomly dispersing conductive particles along an insulating polymer matrix. Several authors have attempted to model the piezoresistive response of conductive polymer composites. However, all the proposed models rely upon experimental measurements of the electrical resistance at rest state. Similarly, the models available in literature assume a voltage-independent resistance and a stress-independent area for tunneling conduction. With the aim of developing and validating a more comprehensive model, a test bench capable of exerting controlled forces has been developed. Commercially available sensors-which are manufactured from conductive polymer composites-have been tested at different voltages and stresses, and a model has been derived on the basis of equations for the quantum tunneling conduction through thin insulating film layers. The resistance contribution from the contact resistance has been included in the model together with the resistance contribution from the conductive particles. The proposed model embraces a voltage-dependent behavior for the composite resistance, and a stress-dependent behavior for the tunneling conduction area. The proposed model is capable of predicting sensor current based upon information from the sourcing voltage and the applied stress. This study uses a physical (non-phenomenological) approach for all the phenomena discussed here.
+SP  - 2108
+VL  - 17
+IS  - 9
+AN  - 28906467
+UR  - https://pubmed.ncbi.nlm.nih.gov/28906467
+DO  - 10.3390/s17092108
+L2  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5621037/
+U1  - 28906467[pmid]
+U2  - PMC5621037[pmcid]
+U4  - s17092108[PII]
+J2  - Sensors (Basel)
+JF  - Sensors (Basel, Switzerland)
+KW  - FSR
+KW  - conductive polymer composite
+KW  - force sensor
+KW  - piezoresistive sensor
+KW  - pressure sensor
+KW  - quantum point contact
+KW  - quantum tunneling
+PB  - MDPI
+ER  - 

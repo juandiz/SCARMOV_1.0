@@ -1,0 +1,19 @@
+TY  - EJOU
+AU  - Pi, Jie
+AU  - Liu, Jun
+AU  - Zhou, Kehong
+AU  - Qian, Mingyan
+TI  - An Octopus-Inspired Bionic Flexible Gripper for Apple Grasping
+T2  - Agriculture
+
+PY  - 2021
+VL  - 11
+IS  - 10
+SN  - 2077-0472
+
+AB  - When an octopus grasps something, the rigidity of its tentacle can change greatly, which allowing for unlimited freedom, agility, and precision. Inspired by this, a three-finger flexible bionic robot gripper was designed for apple picking. First, a flexible chamber finger was designed to drive the gripper finger to elongate, shorten, and bend, which works through a process of inflating and deflating. Further, we proposed a three-finger mode to achieve two kinds of motion states: grasping and relaxing, by simulating the movement of an octopus grasping at something. In this paper, we evaluated the bending property of the designed flexible bionic gripper through an apple grasping experiment. The experimental results show that the 100.0 g bionic gripper can load an apple with a weight of 246.5~350.0 g and a diameter of 69.0~99.0 mm, and the grasping success rate is 100%. It has a good grasping performance. Compared to other soft grippers, the proposed bionic flexible gripper has the advantages of being lightweight, and having good cushioning, low driving air pressure, and a strong grasping force.
+KW  - octopus tentacles
+KW  - bionic flexible gripper
+KW  - pneumatic drive
+KW  - agriculture
+DO  - 10.3390/agriculture11101014
