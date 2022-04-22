@@ -1,0 +1,1 @@
+{"robot_name": "SCARMOV", "linear_velocity": 10, "IP": "192.168.1.135", "PORT": 2390, "point_cm": 0, "size_package": 10, "simulation_mode": 0, "send_mode": 0, "connection_type": "UDP"}
